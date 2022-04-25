@@ -2,24 +2,33 @@
   <Head>
     <Link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
   </Head>
-  <div class="container mx-auto bg-gray-50 h-full p-12">
-    <h1 class="text-xl font-medium mb-8">Deactivate Account</h1>
+  <div class="bg-gray-50 container h-full p-12 mx-auto">
+    <h1 class="mb-8 text-xl font-medium">Deactivate Account</h1>
     <button
-      class="px-4 py-3 bg-sky-700 text-white rounded font-bold text-lg"
+      class="bg-sky-700 px-4 py-3 text-lg font-bold text-white rounded"
       @click="show"
     >
       confirm
     </button>
     <ConfirmDialog />
-    <div>confirmed? {{ result ? 'Yep!' : 'Nope' }}</div>
+    <div>
+      {{ resultMsg }}
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 const { show: showDialog } = useDialog();
 const result = ref(null);
+const resultMsg = computed(() => {
+  if (result.value === null) {
+    return "";
+  } else {
+    return result.value ? "Confirmed!" : "Declined";
+  }
+});
 const show = async () => {
-  console.log('showing');
+  console.log("showing");
   result.value = await showDialog();
 };
 </script>

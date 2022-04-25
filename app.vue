@@ -14,6 +14,12 @@
     <div>
       {{ resultMsg }}
     </div>
+    <Notification
+      msg="Account Deactivated"
+      subtext="your account is no longer accessible"
+      :show="showNotification"
+      @close="setNotification(false)"
+    />
   </div>
 </template>
 
@@ -27,8 +33,17 @@ const resultMsg = computed(() => {
     return result.value ? "Confirmed!" : "Declined";
   }
 });
+
+const [showNotification, setNotification] = useToggle(false);
+
 const show = async () => {
-  console.log("showing");
   result.value = await showDialog();
+
+  if (result.value === true) {
+    setNotification(true);
+    setTimeout(() => {
+      setNotification(false);
+    }, 3000);
+  }
 };
 </script>

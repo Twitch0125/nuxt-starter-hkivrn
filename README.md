@@ -1,3 +1,3 @@
 # nuxt-starter-hkivrn
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/nuxt-starter-hkivrn)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#<your-project-url>)
